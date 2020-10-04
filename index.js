@@ -19,12 +19,19 @@ app.get('/user', function (req, res) {
       codigo: 204,
       mensaje: 'No existe usuario con esas credenciales.'
      };
-    } else {
+    }
+    if( req.query.email === usuario.email && req.query.password === usuario.password ){
      respuesta = {
       error: false,
       codigo: 200,
       mensaje: 'respuesta del usuario',
       respuesta: usuario
+     };
+    }else {
+     respuesta = {
+      error: true,
+      codigo: 204,
+      mensaje: 'No existe usuario con esas credenciales.'
      };
     }
     console.log('req', req.query)

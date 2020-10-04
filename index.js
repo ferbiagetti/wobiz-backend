@@ -28,7 +28,7 @@ app.get('/login', function (req, res) {
             code: 108,
             message:"Wrong username"
         }
-        res.send(respuesta);
+        res.status(401).send(respuesta);
         return;
     }
     if( req.query.password !== usuario.password ) {
@@ -37,7 +37,7 @@ app.get('/login', function (req, res) {
             code:106,
             message:"Wrong password for user"
         }
-        res.send(respuesta);
+        res.status(401).send(statusrespuesta);
         return;
     }
 
@@ -48,7 +48,7 @@ app.get('/login', function (req, res) {
          expires: '1567619449',
          user_id: '21432'
         };
-        res.send(respuesta);
+        res.status(200).send(respuesta);
         return;
     }
 

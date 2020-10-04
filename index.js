@@ -21,33 +21,45 @@ app.get('/login', function (req, res) {
         username: 'admin@gmail.com',
         password: 'admin'
     };
-    if(!req.query.username || req.query.username === '' || !req.query.password || req.query.password === '') {
-     respuesta = {
-      error: true,
-      codigo: 204,
-      mensaje: 'No existe usuario con esas credenciales.'
-     };
+
+    if( req.query.username !== usuario.username) {
+        respuesta = {
+            success:false,
+            code: 108,
+            message:"Wrong username"
+        }
+        res.send(respuesta);
+        return;
     }
-    if( req.query.email === usuario.username && req.query.password === usuario.password ){
-     respuesta = {
-      error: false,
-      codigo: 200,
-      mensaje: 'respuesta del usuario',
-      respuesta: usuario
-     };
-    }else {
-     respuesta = {
-      error: true,
-      codigo: 204,
-      mensaje: 'No existe usuario con esas credenciales.'
-     };
+    if( req.query.password !== usuario.password ) {
+        respuesta = {
+            success:false,
+            code:106,
+            message:"Wrong password for user"
+        }
+        res.send(respuesta);
+        return;
     }
+
+    if( req.query.username === usuario.username && req.query.password === usuario.password ){
+        respuesta = {
+         codigo: 200,
+         token: 'ba7c2cf6c55e3e382f2f48231aafc6b8725d723b',
+         expires: '1567619449',
+         user_id: '21432'
+        };
+        res.send(respuesta);
+        return;
+    }
+
     console.log('req', req.query)
     res.send(respuesta);
    });
+
+   
    
 
 
 app.listen(process.env.PORT || 5000, () => {
-    console.log("El servidor está inicializado en el puerto 3000");
+    console.log("El servidor está inicializado en el puerto 5000");
 });

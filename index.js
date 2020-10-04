@@ -15,14 +15,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-app.get('/login', function (req, res) {
+app.post('/login', function (req, res) {
     let respuesta = {};
     usuario = {
         username: 'admin@gmail.com',
         password: 'admin'
     };
 
-    if( req.query.username !== usuario.username) {
+    if( req.body.username !== usuario.username) {
         respuesta = {
             success:false,
             code: 108,
@@ -31,7 +31,7 @@ app.get('/login', function (req, res) {
         res.status(401).send(respuesta);
         return;
     }
-    if( req.query.password !== usuario.password ) {
+    if( req.body.password !== usuario.password ) {
         respuesta = {
             success:false,
             code:106,
@@ -41,7 +41,7 @@ app.get('/login', function (req, res) {
         return;
     }
 
-    if( req.query.username === usuario.username && req.query.password === usuario.password ){
+    if( req.body.username === usuario.username && req.body.password === usuario.password ){
         respuesta = {
          codigo: 200,
          token: 'ba7c2cf6c55e3e382f2f48231aafc6b8725d723b',
@@ -52,7 +52,7 @@ app.get('/login', function (req, res) {
         return;
     }
 
-    console.log('req', req.query)
+    console.log('req', req.body)
     res.send(respuesta);
    });
 

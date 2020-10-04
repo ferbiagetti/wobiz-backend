@@ -37,7 +37,7 @@ app.get('/login', function (req, res) {
             code:106,
             message:"Wrong password for user"
         }
-        res.status(401).send(statusrespuesta);
+        res.status(401).send(respuesta);
         return;
     }
 

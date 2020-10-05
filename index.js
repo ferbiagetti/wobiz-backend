@@ -19,7 +19,7 @@ app.post('/login', function (req, res) {
     let respuesta = {};
     usuario = {
         username: 'admin@gmail.com',
-        password: 'admin'
+        password: 'admin1'
     };
 
     if( req.body.username !== usuario.username) {
